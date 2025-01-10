@@ -1,0 +1,118 @@
+[gd_scene load_steps=6 format=3 uid="uid://bhfei7o07er0b"]
+
+[ext_resource type="Script" path="res://game/levels/scripts/main_menu.gd" id="1_wdvqh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_w2hda"]
+line_spacing = 10.0
+font_size = 180
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6xhln"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jedah"]
+bg_color = Color(0.673835, 0.600115, 0.282048, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_42fga"]
+bg_color = Color(0.187602, 0.667316, 0.755457, 1)
+
+[node name="MainMenu" type="Control"]
+process_priority = 100
+top_level = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("1_wdvqh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+text = "GAME NAME"
+label_settings = SubResource("LabelSettings_w2hda")
+
+[node name="Panel" type="Panel" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6xhln")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Spacer1" type="TextureRect" parent="VBoxContainer/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Continue_btn" type="Button" parent="VBoxContainer/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_jedah")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_42fga")
+disabled = true
+text = "Continue"
+
+[node name="NewGame_btn" type="Button" parent="VBoxContainer/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "New Game
+"
+
+[node name="LoadGame_btn2" type="Button" parent="VBoxContainer/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+disabled = true
+text = "Load Game
+"
+
+[node name="Settings_btn" type="Button" parent="VBoxContainer/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Settings
+"
+
+[node name="Quit_btn" type="Button" parent="VBoxContainer/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Quit
+"
+
+[node name="Spacer2" type="TextureRect" parent="VBoxContainer/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/Panel/MarginContainer/HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[connection signal="pressed" from="VBoxContainer/Panel/MarginContainer/HBoxContainer/VBoxContainer/Continue_btn" to="." method="_on_continue_btn_pressed"]
+[connection signal="pressed" from="VBoxContainer/Panel/MarginContainer/HBoxContainer/VBoxContainer/NewGame_btn" to="." method="_on_new_game_btn_pressed"]
+[connection signal="pressed" from="VBoxContainer/Panel/MarginContainer/HBoxContainer/VBoxContainer/LoadGame_btn2" to="." method="_on_load_game_btn_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/Panel/MarginContainer/HBoxContainer/VBoxContainer/Settings_btn" to="." method="_on_settings_btn_pressed"]
+[connection signal="pressed" from="VBoxContainer/Panel/MarginContainer/HBoxContainer/VBoxContainer/Quit_btn" to="." method="_on_quit_btn_pressed"]

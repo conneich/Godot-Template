@@ -1,0 +1,140 @@
+[gd_scene load_steps=5 format=3 uid="uid://c57hf3p5sb31x"]
+
+[ext_resource type="Script" path="res://game/interface/menus/script/settings_menus.gd" id="1_e3fr3"]
+[ext_resource type="PackedScene" uid="uid://bv2utmu17ni2o" path="res://game/interface/menus/gameplay_settings_menu.tscn" id="2_sncrx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gblq0"]
+border_width_left = 300
+border_width_top = 100
+border_width_right = 300
+border_width_bottom = 100
+border_color = Color(0.509804, 0.509804, 0.509804, 0.105882)
+border_blend = true
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_g5ve6"]
+
+[node name="Panel" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gblq0")
+
+[node name="SettingsMenus" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 60
+script = ExtResource("1_e3fr3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsMenus"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsMenus/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsMenus/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsMenus/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="SettingsMenus/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Gameplay_btn" type="Button" parent="SettingsMenus/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+button_group = SubResource("ButtonGroup_g5ve6")
+text = "Gameplay"
+
+[node name="Graphics_btn" type="Button" parent="SettingsMenus/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_g5ve6")
+text = "Graphics"
+
+[node name="Audio_btn" type="Button" parent="SettingsMenus/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_g5ve6")
+text = "Audio
+"
+
+[node name="Input_btn" type="Button" parent="SettingsMenus/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_g5ve6")
+text = "Input
+"
+
+[node name="TextureRect2" type="TextureRect" parent="SettingsMenus/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Default_btn" type="Button" parent="SettingsMenus/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Default"
+
+[node name="Apply_btn" type="Button" parent="SettingsMenus/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+disabled = true
+text = "Apply"
+
+[node name="TextureRect3" type="TextureRect" parent="SettingsMenus/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="Back_btn" type="Button" parent="SettingsMenus/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Back"
+
+[node name="TextureRect4" type="TextureRect" parent="SettingsMenus/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="SettingTabs" type="TabContainer" parent="SettingsMenus/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+current_tab = 0
+clip_tabs = false
+tabs_visible = false
+
+[node name="GameplaySettingsMenu" parent="SettingsMenus/VBoxContainer/HBoxContainer/SettingTabs" instance=ExtResource("2_sncrx")]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[connection signal="toggled" from="SettingsMenus/VBoxContainer/HBoxContainer/VBoxContainer/Gameplay_btn" to="SettingsMenus" method="_on_gameplay_btn_toggled"]
+[connection signal="toggled" from="SettingsMenus/VBoxContainer/HBoxContainer/VBoxContainer/Graphics_btn" to="SettingsMenus" method="_on_graphics_btn_toggled"]
+[connection signal="toggled" from="SettingsMenus/VBoxContainer/HBoxContainer/VBoxContainer/Audio_btn" to="SettingsMenus" method="_on_audio_btn_toggled"]
+[connection signal="toggled" from="SettingsMenus/VBoxContainer/HBoxContainer/VBoxContainer/Input_btn" to="SettingsMenus" method="_on_input_btn_toggled"]
+[connection signal="pressed" from="SettingsMenus/VBoxContainer/HBoxContainer/VBoxContainer/Default_btn" to="SettingsMenus" method="_on_default_btn_pressed"]
+[connection signal="pressed" from="SettingsMenus/VBoxContainer/HBoxContainer/VBoxContainer/Back_btn" to="SettingsMenus" method="_on_back_btn_pressed"]

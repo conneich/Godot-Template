@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="AudioSettings" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/settings/audio_settings.gd" id="1_2y4np"]
+
+[resource]
+script = ExtResource("1_2y4np")
+_settings = {
+"Ambient": 0.0,
+"Dialog": 0.0,
+"Master": -3.09804,
+"Music": 0.0,
+"SFX": 0.0,
+"Version": "0.0.1"
+}

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="GraphicsSettings" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/settings/graphics_settings.gd" id="1_wakna"]
+
+[resource]
+script = ExtResource("1_wakna")
+Settings = {
+"AntiAliasing": "MSAA_2X",
+"FPS": 60,
+"Fullscreen": false,
+"RenderMode": 2,
+"RenderQuality": 0.77,
+"ScreenSize": Vector2i(1280, 720),
+"Version": "0.0.1",
+"Vsync": true
+}

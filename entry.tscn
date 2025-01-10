@@ -1,0 +1,66 @@
+[gd_scene load_steps=3 format=3 uid="uid://bf4mry38d66ll"]
+
+[ext_resource type="Script" path="res://game/start.gd" id="1_4fjxd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ehsyu"]
+
+[node name="Main" type="Node" node_paths=PackedStringArray("hud_layer", "menu_layer", "modal_layer", "prompt_layer", "systems_node", "playerstate_node", "level_node")]
+script = ExtResource("1_4fjxd")
+hud_layer = NodePath("Interface/HUDLayer")
+menu_layer = NodePath("Interface/MenuLayer")
+modal_layer = NodePath("Interface/ModalLayer")
+prompt_layer = NodePath("Interface/PromptLayer")
+systems_node = NodePath("Systems")
+playerstate_node = NodePath("PlayerState")
+level_node = NodePath("Level")
+main_menu_scene_path = "res://game/levels/main_menu.tscn"
+settings_scene_path = "res://game/interface/menus/settings_menus.tscn"
+audio_settings_path = "res://config/audio_settings.tres"
+input_settings_path = "res://config/input_settings.tres"
+graphics_settings_path = "res://config/graphics_settings.tres"
+gameplay_settings_path = "res://config/gameplay_settings.tres"
+
+[node name="Systems" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="PlayerState" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="Level" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="Interface" type="AspectRatioContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+ratio = 1.77
+
+[node name="HUDLayer" type="PanelContainer" parent="Interface"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ehsyu")
+
+[node name="MenuLayer" type="PanelContainer" parent="Interface"]
+unique_name_in_owner = true
+z_index = 50
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ehsyu")
+
+[node name="ModalLayer" type="PanelContainer" parent="Interface"]
+unique_name_in_owner = true
+z_index = 100
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ehsyu")
+
+[node name="PromptLayer" type="PanelContainer" parent="Interface"]
+unique_name_in_owner = true
+z_index = 101
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ehsyu")
