@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://b516d7bje4ba7"]
+
+[ext_resource type="PackedScene" uid="uid://8gnptwbkq0p4" path="res://game/player/player_test.tscn" id="2_gfb0r"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_h6nbj"]
+
+[sub_resource type="Sky" id="Sky_07lnh"]
+sky_material = SubResource("ProceduralSkyMaterial_h6nbj")
+
+[sub_resource type="Environment" id="Environment_ytw4a"]
+background_mode = 2
+sky = SubResource("Sky_07lnh")
+ambient_light_source = 3
+reflected_light_source = 2
+sdfgi_enabled = true
+
+[node name="MainLevel" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("2_gfb0r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.521147, 0)
+collision_layer = 1
+collision_mask = 3
+platform_floor_layers = 4294901762
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ytw4a")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.780409, 0.62527, 0, -0.597776, 0.746093, 0.293273, 0.183375, -0.228873, 0.956029, 0, 9.23456, 0)
+light_color = Color(0.956863, 1, 1, 1)

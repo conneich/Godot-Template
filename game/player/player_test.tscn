@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://8gnptwbkq0p4"]
+
+[ext_resource type="Script" path="res://src/player/player_test.gd" id="1_ynvsb"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_oiwn1"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5l04g"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_4qq2y"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xw2wd"]
+albedo_color = Color(1, 0, 0, 1)
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+collision_layer = 3
+floor_stop_on_slope = false
+floor_constant_speed = true
+floor_max_angle = 0.523599
+script = ExtResource("1_ynvsb")
+
+[node name="GroundCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_oiwn1")
+
+[node name="Mesh" type="CSGMesh3D" parent="GroundCollision"]
+transform = Transform3D(0.8, 0, 0, 0, 1, 0, 0, 0, 0.8, 0, 0.5, 0)
+mesh = SubResource("CapsuleMesh_5l04g")
+
+[node name="FacingDirection" type="CSGMesh3D" parent="GroundCollision"]
+transform = Transform3D(-8.74228e-09, 0.2, -8.74228e-09, 0, -8.74228e-09, -0.2, -0.2, -8.74228e-09, 3.82137e-16, 0.589221, 0.923374, 0)
+cast_shadow = 0
+visibility_range_fade_mode = 1
+mesh = SubResource("PrismMesh_4qq2y")
+material = SubResource("StandardMaterial3D_xw2wd")
+
+[node name="Viewpoint" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.154853, 1.6246, 0)
