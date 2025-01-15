@@ -6,9 +6,13 @@ var Settings: Dictionary
 
 
 var _using_controller: bool = false
+var _last_action: Dictionary = {}
 
 func _ready():
 	set_process_input(true)
+	
+	_last_action["key"] = ""
+	_last_action["start"] = -1
 
 func check(version: StringName) -> bool:
 	if not Settings.has("Version"):
@@ -60,6 +64,53 @@ func get_default_settings() -> Dictionary:
 	default_settings["InvertLook"] = false
 	
 	return default_settings
+
+
+func get_action_value(key: String) -> float:
+	if key in Keymap.keys() and Input.is_action_pressed(key):
+		return Input.get_action_raw_strength(key)
+	return 0.0
+
+func get_action_just_pressed(key: String) -> bool:
+	if key in Keymap.keys() and Input.is_action_just_pressed(key):
+		_set_last_action(key)
+		return true
+	return false
+
+func get_is_action_held(key: String) -> bool:
+	return key in Keymap.keys() and Input.is_action_pressed(key)
+
+func get_action_held_duraction(key: String) -> float:
+	if key == _last_action["key"] and get_is_action_held(key):
+		return _get_last_action_duration()
+	return -1
+
+func get_action_just_released(key: String) -> bool:
+	if key in Keymap.keys() and Input.is_action_just_released(key):
+		_set_last_action()
+		return true
+	return false
+
+func _set_last_action(key: String = ""):
+	if not key in Keymap.keys():
+		return
+	
+	if key == "":
+		_last_action["key"] = ""
+		_last_action["start"] = -1
+		return
+	
+	_last_action["key"] = key
+	_last_action["start"] = Time.get_ticks_msec()
+
+func _get_last_action() -> String:
+	return _last_action["key"]
+
+func _get_last_action_duration() -> float:
+	if _last_action["key"] == "":
+		return -1
+	
+	return Time.get_ticks_msec() - _last_action["start"]
 
 func _apply_input():
 	# Clear existing input map
