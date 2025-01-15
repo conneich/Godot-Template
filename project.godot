@@ -32,10 +32,6 @@ Globals="*res://src/application/globals.gd"
 window/size/viewport_width=1280
 window/size/viewport_height=800
 
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/terrain_3d/plugin.cfg")
-
 [input]
 
 MoveForward={
