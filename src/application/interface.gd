@@ -8,15 +8,22 @@ var _prompt_layer: Node = null
 const info_modal_duration: float = 1.2
 const important_modal_duration: float = 4.0
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if Game.focus_state != Globals.FocusState.GameOnly:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+	if _has_children(_menu_layer) or _has_children(_prompt_layer):
+		SignalBus.set_input_mode.emit(Globals.FocusState.UIOnly)
 
 func _has_children(node: Control) -> bool:
 	if node.get_child_count() > 0:
 		return true
 	return false
 
+func can_receive_input() -> bool:
+	return Game.focus_state != Globals.FocusState.GameOnly
 
 func set_hud_layer(layer_node: Node) -> void:
 	_hud_layer = layer_node

@@ -6,6 +6,7 @@ extends Node
 
 # Game Variables
 var app_state :Globals.ApplicationState = Globals.ApplicationState.Initializing
+var focus_state: Globals.FocusState = Globals.FocusState.GameAndUI
 
 # Settings
 var Settings: Dictionary
@@ -91,6 +92,7 @@ func _ready() -> void:
 	_set_state(Globals.ApplicationState.Initializing)
 	
 	SignalBus.main_ready.connect(_on_main_ready)
+	SignalBus.set_input_mode.connect(_on_input_mode_changed)
 
 func _on_main_ready(main_node: Node) -> void:
 	_set_state(Globals.ApplicationState.Loading)
@@ -138,6 +140,8 @@ func _on_main_ready(main_node: Node) -> void:
 	_set_state(Globals.ApplicationState.Running)
 	
 	
+func _on_input_mode_changed(mode: Globals.FocusState):
+	focus_state = mode
 
 func _set_state(new_state: Globals.ApplicationState):
 	print("App State Changed:\nOld - " + str(app_state) + "\nNew - " + str(new_state))

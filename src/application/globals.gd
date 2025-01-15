@@ -28,6 +28,12 @@ enum EventType {
 	Misc
 }
 
+enum FocusState {
+	GameOnly,
+	GameAndUI,
+	UIOnly
+}
+
 const SupportedScreenSizes: Dictionary = {
 	"640x480":   Vector2i(640,  480),
 	"800x600":   Vector2i(800,  600),

@@ -4,8 +4,17 @@ extends Node
 ######################################
 ##           Event Signals          ##
 ######################################
-signal enqueue_event
-signal add_event_listener(listener: Node, event_type: StringName, event_id: StringName)
+signal enqueue_event(type: Globals.EventType, data)
+
+#  Listener Dictionary Hint:
+#     {
+#       "event_type_1": {
+#            "event_id_1": [  listener_1, listener_2, ... ],
+#            ...
+#       },
+#       ...
+#     }
+signal add_event_listener(listener: Node, event_type: Globals.EventType, event_id: StringName)
 
 
 ######################################
@@ -20,6 +29,7 @@ signal application_running
 ##          Input Signals           ##
 ######################################
 signal input_action_triggered(action_name, event_type)
+signal set_input_mode(mode: Globals.FocusState)
 
 
 ######################################

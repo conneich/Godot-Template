@@ -62,6 +62,7 @@ func get_default_settings() -> Dictionary:
 	default_settings["Version"] = "0.0.1"
 	
 	default_settings["InvertLook"] = false
+	default_settings["MouseSensitivity"] = 1.0
 	
 	return default_settings
 
@@ -128,6 +129,9 @@ func set_controller(new_setting: bool):
 
 
 func _input(event: InputEvent):
+	if Game.focus_state == Globals.FocusState.UIOnly:
+		return
+	
 	for action in InputMap.get_actions():
 		if Input.is_action_just_pressed(action) and event.is_pressed():
 			SignalBus.emit_signal("input_action_triggered", action, "pressed")
